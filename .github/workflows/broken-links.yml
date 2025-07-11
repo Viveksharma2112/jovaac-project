@@ -3,13 +3,13 @@ name: Links
 on:
   workflow_dispatch:
   schedule:
-    - cron: "00 18 * * *"  # Har din shaam 6 baje (UTC) ko run kare
+    - cron: "00 18 * * *"  # Har din shaam 6 baje (UTC)
 
 jobs:
   linkChecker:
     runs-on: ubuntu-latest
     permissions:
-      issues: write  # Issue create karne ke liye zaroori hai
+      issues: write  # Issue create karne ke liye permission
 
     steps:
       - name: Checkout Repository
@@ -19,7 +19,7 @@ jobs:
         id: lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --verbose .
+          args: --verbose --fail-if-empty=false .
           fail: false
 
       - name: Create GitHub Issue From Link Report
